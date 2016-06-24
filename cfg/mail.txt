@@ -1,0 +1,2 @@
+subject#[CTL] Installation status - DEVPLUS 
+body#table of installed artifacts
