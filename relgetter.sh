@@ -9,7 +9,7 @@ readarray SRVLIST < $PWD/cfg/server.list
 echo $HEADER >> $PWD/output/$FILENAME
 for ITERATOR in ${SRVLIST[@]}; do
         IFS=# read TAG IP USR PASS <<< "$ITERATOR"
-	./askremote.sh 22 $USR $PASS $IP /home/$USR/relextractor/./relextractor.sh | grep -v password > ./tmp/pre.txt
+	./askremote.sh 22 $USR $PASS $IP /home/$USR/RelExtractor-R1.0/./relextractor.sh | grep -v password > ./tmp/pre.txt
 	sed 's/ //g' ./tmp/pre.txt > ./tmp/post.txt
 	readarray INPUT < "./tmp/post.txt"
  	for ITERATOR2 in ${INPUT[@]}; do
