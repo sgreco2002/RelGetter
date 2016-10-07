@@ -5,7 +5,7 @@ DATETIME=$(date +"%Y-%m-%d_%H-%M")
 FILENAME=extraction_$DATETIME.html
 HEADER=`cat ./htmls/header.html`
 FOOTER=`cat ./htmls/footer.html`
-readarray SRVLIST < /home/nagios/relgetter/cfg/server.list
+readarray SRVLIST < $PWD/cfg/server.list
 echo $HEADER >> $PWD/output/$FILENAME
 for ITERATOR in ${SRVLIST[@]}; do
         IFS=# read TAG IP USR PASS <<< "$ITERATOR"
