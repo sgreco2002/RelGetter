@@ -1,5 +1,5 @@
 # 2016 Accenture : sergio.greco
-# release extractor for CenturyLink
+# release extractor for AVS M3 modules 
 
 DATETIME=$(date +"%Y-%m-%d_%H-%M")
 FILENAME=extraction_$DATETIME.html
@@ -9,7 +9,8 @@ readarray SRVLIST < $PWD/cfg/server.list
 echo $HEADER >> $PWD/output/$FILENAME
 for ITERATOR in ${SRVLIST[@]}; do
         IFS=# read TAG IP USR PASS <<< "$ITERATOR"
-	./askremote.sh 22 $USR $PASS $IP /home/$USR/RelExtractor-R1.0/./relextractor.sh | grep -v password > ./tmp/pre.txt
+	#./askremote.sh 22 $USR $PASS $IP /home/$USR/RelExtractor-R1.0/./relextractor.sh | grep -v password > ./tmp/pre.txt
+	ssh $IP /home/$USR/RelExtractor/./relextractor.sh | grep -v password > ./tmp/pre.txt
 	sed 's/ //g' ./tmp/pre.txt > ./tmp/post.txt
 	readarray INPUT < "./tmp/post.txt"
  	for ITERATOR2 in ${INPUT[@]}; do
